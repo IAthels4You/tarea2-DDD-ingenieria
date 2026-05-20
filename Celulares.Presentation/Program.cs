@@ -17,14 +17,15 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseInMemoryDatabase("CelularesDb"));
 
-// Dependency Injection Configuration
+// Aqui se hace la Inyección de dependencias para los repositorios y servicios
+//aqui tambien se observa el IoC (Inversion of Control) al registrar las dependencias en el contenedor de servicios
 builder.Services.AddScoped<ICelularRepository, CelularRepository>();
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddScoped<ICelularApplicationService, CelularApplicationService>();
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
+// Esto es swagger oara documentar las APIs
 app.UseSwagger();
 app.UseSwaggerUI(c =>
 {
@@ -32,7 +33,6 @@ app.UseSwaggerUI(c =>
     c.RoutePrefix = string.Empty; // Serve swagger UI at root
 });
 
-// app.UseHttpsRedirection();
 
 app.UseAuthorization();
 

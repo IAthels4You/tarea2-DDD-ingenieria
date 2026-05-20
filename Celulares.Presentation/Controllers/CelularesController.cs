@@ -4,17 +4,25 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Celulares.API.Controllers
 {
+    //Solo se utilizan controllers porque se esta creando una API REST,
+    //si fuera una aplicación MVC se utilizarían controllers y views como en el libro
     [ApiController]
     [Route("api/[controller]")]
     public class CelularesController : ControllerBase
     {
         private readonly ICelularApplicationService _service;
 
+        //aqui se observa la inyección de dependencias en el constructor, el controlador depende de
+        //una abstracción (la interfaz) en lugar de una implementación concreta
+        //favorece el bajo acoplamiento y facilita pruebas
         public CelularesController(ICelularApplicationService service)
         {
             _service = service;
         }
 
+        //En los siguientes métodos solamente se recibe la solicitud, se delega la operación al servicio y se devuelve la respuesta adecuada
+        //El controlador no contiene lógica de negocio, solo delega las operaciones al servicio
+        //Se ve fácilmente la separación de responsabilidades
         [HttpGet]
         public async Task<ActionResult<IEnumerable<CelularDto>>> GetAll()
         {

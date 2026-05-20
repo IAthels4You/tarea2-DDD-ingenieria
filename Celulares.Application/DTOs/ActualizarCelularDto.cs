@@ -2,6 +2,10 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Celulares.Application.DTOs
 {
+    //Este DTO define los datos que ingresa el usuario y son utilizados para actualizar un celular existente.
+    //solamente contiene las propiedades que se pueden actualizar, y se utilizan atributos de validación
+    //para asegurar que los datos sean correctos antes de ser procesados por el servicio.
+    //Es utilizado por la capa de presentación al recibir datos en el endpoint de actualización (UPDATE)
     public class ActualizarCelularDto
     {
         [Required(ErrorMessage = "La marca es requerida.")]

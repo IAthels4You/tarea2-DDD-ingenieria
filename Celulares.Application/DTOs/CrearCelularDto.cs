@@ -4,6 +4,11 @@ namespace Celulares.Application.DTOs
 {
     public class CrearCelularDto
     {
+        //Este DTO define los datos que ingresa el usuario y son utilizados para crear un celular nuevo.
+        //solamente contiene las propiedades necesarios al crear, y se utilizan atributos de validación
+        //para asegurar que los datos sean correctos antes de ser procesados por el servicio.
+        //Es utilizado por la capa de presentación al recibir datos en el endpoint de creación (POST)
+
         [Required(ErrorMessage = "La marca es requerida.")]
         public string Marca { get; set; } = string.Empty;
         

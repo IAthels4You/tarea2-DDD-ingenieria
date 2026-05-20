@@ -7,7 +7,15 @@ namespace Celulares.Application.Services
 {
     public class CelularApplicationService : ICelularApplicationService
     {
+        // El servicio de aplicación es la capa que orquesta las operaciones relacionadas con los celulares, es decir,
+        // contiene la lógica para manejar las operaciones CRUD (Crear, Leer, Actualizar, Eliminar).
+        //no contiene lógica de negocio, solo coordina las operaciones entre el controlador y el repositorio
         private readonly ICelularRepository _repository;
+
+        //Algo importante es que el servicio de aplicación también maneja el Unit of Work, mencionado en la lectura,
+        //que es un patrón que se encarga de coordinar las operaciones que involucran cambios en el estado de la base de datos,
+        //asegurando que todas las operaciones se realicen correctamente o se deshagan en caso de error.
+        //básicamente asegura que las diferentes operaciones que involucran cambios en base de datos se hagan de manera atómica
         private readonly IUnitOfWork _unitOfWork;
 
         public CelularApplicationService(ICelularRepository repository, IUnitOfWork unitOfWork)
